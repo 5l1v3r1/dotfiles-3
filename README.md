@@ -1,23 +1,23 @@
 # dotfiles
-Distrubtion - Arch GNU\Linux.
-Video & Audio - mpd & ncmpcpp/mpv.
-Files Browser - Ranger & PCManFM.
-Web Browsers - elinks,w3m,firefox.
-panel - lxpanel.
-DE/WM - dwm / lxde.
-Font - Ohsnap.icons (Get it from the AUR)
-Terminal - urxvt.
-Firefox Addons:
-  vimpperator
-  HTTPS-EveryWhere
-  Request Policy
-  Noscript
-  Stylish
-  Youtube ALL HTML5
-  Omni bar
-  Free Memory 2.0
-  Disconnect
-  Sircmpwn`s External Player.
-
-Firefox styles will be uploaded soon.
-Hope You will enjoy my dots :)
+Distrubtion - Arch GNU\Linux.<br>
+Video & Audio - mpd & ncmpcpp/mpv.<br>
+Files Browser - Ranger & PCManFM.<br>
+Web Browsers - elinks,w3m,firefox.<br>
+panel - lxpanel.<br>
+DE/WM - dwm / lxde.<br>
+Font - Ohsnap.icons (Get it from the AUR)<br>
+Terminal - urxvt.<br>
+Firefox Addons:<br>
+  vimpperator<br>
+  HTTPS-EveryWhere<br>
+  Request Policy<br>
+  Noscript<br>
+  Stylish<br>
+  Youtube ALL HTML5<br>
+  Omni bar<br>
+  Free Memory 2.0<br>
+  Disconnect<br>
+  Sircmpwn`s External Player.<br>
+<br>
+Firefox styles will be uploaded soon.<br>
+Hope You will enjoy my dots :)<br>
