@@ -8,7 +8,7 @@ DE/WM - dwm / lxde.<br>
 Font - Ohsnap.icons (Get it from the AUR)<br>
 Terminal - urxvt.<br>
 Firefox Addons:<br>
-  vimperator<br>
+  Vimperator<br>
   HTTPS-Everywhere<br>
   Request Policy<br>
   Noscript<br>
