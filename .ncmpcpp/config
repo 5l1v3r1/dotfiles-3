@@ -1,0 +1,42 @@
+## IWAFU's ncmpcpp config
+
+mpd_music_dir = "~/music"
+browser_playlist_prefix = "$8playlist$9 "
+selected_item_prefix = "$0"
+selected_item_suffix = "$9"
+user_interface = "alternative"
+
+song_columns_list_format = "(6f)[blue]{l} (25)[red]{a} (40)[green]{t|f} (30)[yellow]{b}"
+playlist_display_mode = "columns" (classic/columns)
+browser_display_mode = "classic" (classic/columns)
+search_engine_display_mode = "columns" (classic/columns)
+incremental_seeking = "yes"
+external_editor = "nano"
+
+
+progressbar_look = "▀▀ "
+progressbar_color = "white"
+progressbar_elapsed_color = "blue"
+colors_enabled = "yes"
+header_window_color = "white"
+volume_color = "magenta"
+state_line_color = "white"
+state_flags_color = "white"
+main_window_color = "magenta"
+color1 = "white"
+color2 = "cyan"
+main_window_highlight_color = "magenta"
+#progressbar_color = "yellow"
+statusbar_color = "white"
+active_column_color = "yellow"
+empty_tag_color = "yellow"
+
+visualizer_color = "magenta"
+#visualizer_look = "●▋"
+#visualizer_look = "**"
+visualizer_look = "∙▋"
+visualizer_fifo_path = "/tmp/mpd.fifo"
+visualizer_output_name = "FIFO"
+visualizer_sync_interval = "100"
+visualizer_type = "spectrum" (spectrum/wave)
+enable_window_title = "no"

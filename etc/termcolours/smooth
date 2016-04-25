@@ -1,0 +1,48 @@
+!------------------------------------------------------------------------------
+! c o l o r -  s e t t i n g s
+
+URxvt.background: #222222
+URxvt.foreground: #777777
+
+! Default
+! 0: black
+URxvt.color0:  #222222
+URxvt.color8:  #222222
+! 1: red
+URxvt.color1:  #9f6767
+URxvt.color9:  #9f6767
+! 2: green
+URxvt.color2:  #92ac68
+URxvt.color10: #92ac68
+! 3: yellow
+URxvt.color3:  #d0d293
+URxvt.color11: #d0d293
+URxvt.color4:  #9aacc3
+URxvt.color12: #9aacc3
+! 5: magenta
+URxvt.color5:  #bb77a4
+URxvt.color13: #bb77a4
+! 6: cyan
+URxvt.color6:  #77bbb5
+URxvt.color14: #77bbb5
+! 7: white
+URxvt.color7:  #777777
+URxvt.color15: #777777
+
+!------------------------------------------------------------------------------
+! u r x v t
+
+URxvt*geometry:         77x25
+URxvt*urlLauncher:         firefox
+URxvt.scrollBar: off
+! font
+!URxvt*font:                                     xft:Ohsnap.Icons:hinting=true:pixelsize=10:antialias=false
+!URxvt*boldFont:                                 xft:Ohsnap.Icons:style=bold:hinting=true:pixelsize=10:antialias=false
+!URxvt*italicFont:                               xft:Ohsnap.Icons:style=italic:hinting=true:pixelsize=10:antialias=false
+!URxvt*boldItalicFont:                           xft:Ohsnap.Icons:style=bolditalic:hinting=true:pixelsize=10:antialias=false
+! extensions
+URxvt.perl-ext-common: bidi
+URxvt.colorIT:                                  #9D9EA2
+URxvt.colorBD:                                  #9D9EA2
+URxvt.colorUL:                                  #9D9EA2
+Urxvt.bidi.FieldSep: \x{2502}

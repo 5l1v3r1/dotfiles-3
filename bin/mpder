@@ -1,0 +1,13 @@
+#!/bin/bash
+
+s="$(mpc | awk 'NR == 2 {print $1}')"
+s2="$(mpc current )"
+
+if [ "$s" = "[playing]" ]; then 
+	song_info="$s2"
+elif [ "$s" = "[paused]" ]; then
+  song_info="Paused"
+else 
+	song_info="OFF"
+fi;
+echo $song_info

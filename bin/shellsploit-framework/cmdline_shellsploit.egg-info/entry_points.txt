@@ -1,0 +1,3 @@
+[console_scripts]
+shellsploit = shell.shellsploit:main
+

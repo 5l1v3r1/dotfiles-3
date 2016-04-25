@@ -1,0 +1,110 @@
+#!/bin/bash
+#
+# Icon glyphs from font ohsnap.icons
+glyph_msc="ê"
+glyph_cpu="Î"
+glyph_mem="¾"
+glyph_dl="Ú"
+glyph_ul="Û"
+glyph_eml="Ê"
+glyph_vol="Å"
+glyph_tim="É"
+glyph_tor="Ñ"
+glyph_wifi="¤"
+glyph_part="È"
+glyph_part2="Î"
+sep_solid="«"
+sep_line="«"
+sep_bar="\x"
+
+print_song_info() {
+  s="$(mpc | awk 'NR == 2 {print $1}')"
+  s2="$(mpc current )"
+
+  if [ "$s" = "[playing]" ]; then 
+	  song_info="$s2" g='æ'
+  elif [ "$s" = "[paused]" ]; then
+    song_info="Paused" g='ç'
+  else 
+	  song_info="OFF" g='ê'
+  fi;
+  echo -ne "\x0C ${g} ${song_info} "
+}
+
+print_mem_used() {
+  mem_used="$(free -m | awk 'NR==2 {print $3}')"
+  echo -ne "\x08 ${glyph_mem} ${mem_used}M "
+}
+
+print_volume() {
+  volume="$(amixer get Master | tail -n1 | sed -r 's/.*\[(.*)%\].*/\1/')"
+	mute="$(amixer get Master | awk 'NR==5 {print $6}' | tail -n1 | cut -c 2-3)"
+	if [ "$mute" = "on"  ]; then
+		var="$volume" g2='í'
+	elif [ "$mute" = "off" ]; then
+		var="Muted" g2="ë"
+	else
+		var="$volume" g2='ì'
+	fi
+  echo -ne "\x0B ${g2} ${var}% "
+}
+
+print_datetime() {
+  datetime="$(date "+%a %d %b %H:%M")"
+  echo -ne "\x01 ${glyph_tim} ${datetime}"
+}
+
+print_torrent_status() {
+  torrent_status="$(transmission-remote -l | awk -F "  +" '$5 ~ /^[0-9]/ {print $5}')"
+  if [[ ! $torrent_status ]]; then
+    torrent_status="Idle"
+  fi
+  echo -ne "\x09 ${glyph_tor} ${torrent_status} "
+}
+
+print_part() {
+	free=$(df -h | grep /dev/sdb | awk 'NR==5 {print $3}')
+	from=$(df -h | grep /dev/sdb | awk 'NR==5 {print $2}')
+	echo -ne "\x0A ${glyph_part2} ${from}/${free} "
+}
+# network (from: http://dzen.geekmode.org/dwiki/doku.php?id=dzen:network-meter)
+# cpu (from: https://bbs.archlinux.org/viewtopic.php?pid=661641#p661641)
+#rx_old=$(cat /sys/class/net/enp0s26f7u2/statistics/rx_bytes)
+#tx_old=$(cat /sys/class/net/enp0s26f7u2/statistics/tx_bytes)
+
+#while true; do
+#  # get new cpu idle and total usage
+#  eval $(awk '/^cpu /{print "cpu_idle_now=" $5 "; cpu_total_now=" $2+$3+$4+$5 }' /proc/stat)
+#  cpu_interval=$((cpu_total_now-${cpu_total_old:-0}))
+#  # calculate cpu usage (%)
+#  let cpu_used="100 * ($cpu_interval - ($cpu_idle_now-${cpu_idle_old:-0})) / $cpu_interval"
+#
+  # get new rx/tx counts
+#  rx_now=$(cat /sys/class/net/enp0s26f7u2/statistics/rx_bytes)
+#  tx_now=$(cat /sys/class/net/enp0s26f7u2/statistics/tx_bytes)
+  # calculate the rate (K) and total (M)
+  #let rx_rate=($rx_now-$rx_old)/1024
+  #let tx_rate=($tx_now-$tx_old)/1024
+#    let rx_total=$rx_now/1048576
+#    let tx_total=$tx_now/1048576
+#
+  # output vars
+#  print_cpu_used() {
+#     echo -ne "${colour_dgry}${colour_blu}${glyph_cpu}${cpu_used}%"
+#  }
+#  print_rx_rate() {
+#     echo -ne "${colour_blk}${colour_grn} ${glyph_dl}${rx_rate}K"
+#  }
+#  print_tx_rate() {
+#     echo -ne "${colour_gry}${colour_red} ${glyph_ul}${tx_rate}K"
+#  }
+#
+# Pipe to status bar, not indented due to printing extra spaces/tabs
+while true; do
+
+  xsetroot -name "$(print_song_info)$(print_part)$(print_mem_used)$(print_torrent_status)$(print_volume)$(print_datetime)"
+
+  # loop stats every 0.1 second
+  sleep 0.1
+done
+

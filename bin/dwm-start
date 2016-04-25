@@ -1,0 +1,12 @@
+#!/bin/bash
+#
+# ~/bin/dwm-start
+#
+$HOME/bin/dwm-statusbar #2>  $HOME/log/dwm-statusbar.log
+while true; do
+    # Log stderror to a file
+    exec dwm #2>  $HOME/log/dwm.log
+    # No error logging
+    #startx /usr/bin/dwm #exec dwm 
+done
+$HOME/.autostart #2>  $HOME/log/dwm-autostart.log

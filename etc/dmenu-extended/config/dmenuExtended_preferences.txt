@@ -1,0 +1,85 @@
+{
+    "alias_applications": false,
+    "aliased_applications_format": "{name} ({command})",
+    "exclude_items": [],
+    "filebrowser": "pcmanfm",
+    "fileopener": "xdg-open",
+    "filter_binaries": false,
+    "follow_symlinks": false,
+    "ignore_folders": [],
+    "include_applications": true,
+    "include_binaries": true,
+    "include_hidden_files": false,
+    "include_hidden_folders": false,
+    "include_items": [
+        "~/.fehbg",
+        [
+            "Youtube (https://youtube.com)",
+            "https://youtube.com"
+        ],
+        [
+            "FXP (http://fxp.co.il)",
+            "http://fxp.co.il"
+        ],
+        [
+            "DDg (https://duckduckgo.com/?q=)",
+            "https://duckduckgo.com/?q="
+        ],
+        "~/.autostart"
+    ],
+    "indicator_alias": "#",
+    "indicator_edit": "*",
+    "indicator_submenu": "->",
+    "menu": "dmenu",
+    "menu_arguments": [
+        "-b",
+        "-i",
+        "-nf",
+        "#eeeeee",
+        "-nb",
+        "#1D1F21",
+        "-sf",
+        "#c5c8c6",
+        "-sb",
+        "#1D1F21",
+        "-fn",
+        "-misc-ohsnap.icons-medium-r-normal-*-12-87-100-100-c-80-iso8859-1",
+        "-l",
+        "10"
+    ],
+    "path_shellCommand": "/bin/bash",
+    "scan_hidden_folders": false,
+    "terminal": "urxvt",
+    "valid_extensions": [
+        "py",
+        "svg",
+        "pdf",
+        "txt",
+        "png",
+        "jpg",
+        "gif",
+        "php",
+        "tex",
+        "odf",
+        "ods",
+        "avi",
+        "mpg",
+        "mp3",
+        "lyx",
+        "bib",
+        "iso",
+        "ps",
+        "zip",
+        "xcf",
+        "doc",
+        "docxxls",
+        "xlsx",
+        "md",
+        "html",
+        "sublime-project"
+    ],
+    "watch_folders": [
+        "~/"
+    ],
+    "webbrowser": "firefox"
+}

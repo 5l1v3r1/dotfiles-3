@@ -1,0 +1,12 @@
+#!/bin/bash
+
+volume="$(amixer get Master | tail -n1 | sed -r 's/.*\[(.*)%\].*/\1/')"
+mute="$(amixer get Master | awk 'NR==5 {print $6}' | tail -n1 )"
+if [ "$mute" = "[on]"  ]; then
+	var="$volume" g2='í'
+elif [ "$mute" = "[off]" ]; then
+	var="Muted" g2="ë"
+else
+	var="$volume" g2='ì'
+fi
+echo "${g2} ${var}"

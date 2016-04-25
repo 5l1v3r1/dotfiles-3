@@ -1,0 +1,153 @@
+#!/bin/bash
+
+#Awesome StatusColors Patch to dwm :)
+colour_gry="\e[0;37m" # grey on black
+colour_wht="\e[0;38m" # white on black
+colour_dgry="\e[0;30m" # darkgrey on black
+colour_red="\e[0;31m" # colour_red on black
+colour_grn="\e[0;32m" # green on black
+colour_dylw="\e[;33m" # orange on black
+colour_ylw="\e[0;3m" # yellow on black
+colour_blu="\e[0;34m" # colour_blue on darkgrey
+colour_mag="\e[0;35m" # colour_magenta on darkgrey
+colour_cyn="\e[0;36m" # cyan on darkgrey
+
+bcolour_gry="\e[1;37m" # grey on black
+bcolour_wht="\e[1;38m" # white on black
+bcolour_dgry="\e[1;30m" # darkgrey on black
+bcolour_red="\e[0;31m" # colour_red on black
+bcolour_grn="\e[0;32m" # green on black
+bcolour_dylw="\e[;33m" # orange on black
+bcolour_ylw="\e[0;3m" # yellow on black
+bcolour_blu="\e[0;34m" # colour_blue on darkgrey
+bcolour_mag="\e[0;35m" # colour_magenta on darkgrey
+bcolour_cyn="\e[0;36m" # cyan on darkgrey
+
+
+# Icon glyphs from font ohsnap.icons
+glyph_msc="ê"
+glyph_cpu="Î"
+glyph_mem="¾"
+glyph_dl="Ú"
+glyph_ul="Û"
+glyph_eml="Ê"
+glyph_vol="Å"
+glyph_tim="É"
+glyph_tor="Ñ"
+sep_solid="«"
+sep_line="«"
+sep_bar="\x"
+
+get_song() {
+    song_info="$(mpc current -f '[[[[%artist% æ ]%title%]]|[%file%]]' | head -c 75)"
+  if [[ ! $song_info ]]; then
+    song_info="Off"
+  fi
+  echo -ne "${colour_cyn} ${glyph_msc} ${song_info} "
+}
+
+get_mem() {
+  mem_used="$(free -m | awk 'NR==2 {print $3}')"
+  echo -ne "${colour_dylw} ${glyph_mem}${mem_used}M"
+}
+
+get_vol(){
+  volume="$(amixer get Master | tail -n1 | sed -r 's/.*\[(.*)%\].*/\1/')"
+  echo -ne "${colour_mag} ${glyph_vol} ${volume}% "
+}
+
+get_date(){
+  datetime="$(date "+%a %d %b %H:%M")"
+  echo -ne "${colour_wht} ${glyph_tim} ${datetime}"
+}
+
+#get_net(){
+rx_old=$(cat /sys/class/net/enp0s26f7u2/statistics/rx_bytes)
+tx_old=$(cat /sys/class/net/enp0s26f7u2/statistics/tx_bytes)
+while true ; do
+  # get new rx/tx counts
+  rx_now=$(cat /sys/class/net/enp0s26f7u2/statistics/rx_bytes)
+  tx_now=$(cat /sys/class/net/enp0s26f7u2/statistics/tx_bytes)
+  # calculate the rate (K) and total (M)
+  let rx_rate=($rx_now-$rx_old)/1024
+  let tx_rate=($tx_now-$tx_old)/1024
+  #  let rx_total=$rx_now/1048576
+  #  let tx_total=$tx_now/1048576
+  rx_old=$rx_now
+  tx_old=$tx_now
+  cpu_idle_old=$cpu_idle_now
+  cpu_total_old=$cpu_total_now
+  # loop stats every 1 second
+  sleep 1
+done &
+dl="${colour_grn} ${glyph_dl}${rx_rate}K "
+ul="${colour_red} ${glyph_ul}${tx_rate}K "
+
+#}
+
+get_lang() {
+  while true ; do
+
+    if [ "`xset -q | awk -F \" \" '/Group 2/ {print($4)}'`" = "on" ]; 
+	  then 
+		    dwmla="He" 
+	  else 
+		    dwmla="En"
+	  fi;
+	  sleep 0.1
+	  echo -ne "${colour_magenta}${dwmla}"
+done &
+}
+
+get_netinf() {
+  h=$(hostname)
+  ip=$(ifconfig | awk 'NR==2 {print $2}')
+  echo -ne "${colour_cyn} $h@$ip"
+}
+
+get_cpu_type() {
+  cpu=awk 'BEGIN{FS=":"} /model name/ } print $2; exit }' /proc/cpuinfo | awk 'BEGIN{FS=" @"; OFS="\n"} { print $1; exit }'
+  echo -ne "${colour_blu} $cpu"
+}
+
+get_gpu() {
+  gpu="GeForce GTX 650"
+  temp=$(nvidia-settings -q gpucoretemp -t | awk "NR==1")
+  it="°"
+  echo -ne "${colour_grn} $gpu@$temp ${it}"
+}
+
+get_parts() {
+  roots=$(df | awk 'NR==4 {print $2}')
+  rootu=$(df | awk 'NR==4 {print $3}')
+  echo -ne "${colour_red} ${rootu}/${colour_dgry} ${colour_blu}${roots}"
+}
+
+get_cpu() {
+  while true; do
+    # get new cpu idle and total usage
+    eval $(awk '/^cpu /{print "cpu_idle_now=" $5 "; cpu_total_now=" $2+$3+$4+$5 }' /proc/stat)
+    cpu_interval=$((cpu_total_now-${cpu_total_old:-0}))
+    # calculate cpu usage (%)
+    let cpu_used="100 * ($cpu_interval - ($cpu_idle_now-${cpu_idle_old:-0})) / $cpu_interval"
+  done
+  echo -ne "${colour_blu}${glyph_cpu}${cpu_used}% "
+  }
+while true ; do
+  echo -e """
+  ###############################################################
+  #  ${bcolour_cyn}Music: $(get_song)                           #
+  #  ${bcolour_mag}Vol: $(get_vol)                              #
+  #  ${bcolour_blu}CPU: $(get_cpu) $(get_cpu_type)              #
+  #  ${bcolour_grn}GPU: $(get_gpu)                              #
+  #  ${bcolour_dylw}Mem: $(get_mem)                             #
+  #  ${bcolour_red}RootFS: $(get_parts)                         #
+  #  ${bcolour_grn}Download : ${dl}                             #
+  #  ${bcolour_red}Upload: ${ul}                                #
+  #  ${bcolour_cyn}Host@IP: $(get_netinf)                       #
+  #  ${bcolour_mag}LANG: $(get_lang)                            #
+  #  ${bcolour_wht}Date: $(get_date)                            #
+  ###############################################################
+  """
+  sleep 1
+done  

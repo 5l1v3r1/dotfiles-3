@@ -1,0 +1,23 @@
+shell tar -zxvf dwm-6.1.tar.gz
+shell unzip -x fonts-master.zip
+shell ./install.sh
+shell .configure
+shell ./configure
+shell make
+shell make install
+shell tar -Jxvpf Popcorn-Time-0.3.9-Linux-64.tar.xz
+rename בחייאת_דינק.mkv
+rename Sky.mkv
+shell unzip -x conky.zip
+open_with vim
+deletey
+rename VirtualBox VMs
+rename 05-systray.diff
+mkdir steam
+rename dwm
+shell tar -zxvf dwm-6.0.tar.gz
+delete
+rename 05-attachabove.diff
+cd pacman.d/
+rename pacman.old
+

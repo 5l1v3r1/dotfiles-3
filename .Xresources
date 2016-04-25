@@ -1,0 +1,30 @@
+!
+! ~/.Xresources
+!
+
+! X Settings
+Xft.dpi: 96
+Xft.antialias : true
+Xft.rgba:				rgb
+Xcursor.theme: Neutral
+
+! Colour Scheme Easy Switcihng :)
+!#include "/home/nadav/.config/termcolours/jellybeans"
+#include "/home/nadav/.config/termcolours/hybrid"
+!#include "/home/nadav/.config/termcolours/classy_touch"
+!#include "/home/nadav/.config/termcolours/yan"
+!#include "/home/nadav/.config/termcolours/optical"
+! URxvt Options
+URxvt.scrollBar: off
+! font
+URxvt*font:                                     xft:Ohsnap.Icons:hinting=true:pixelsize=10:antialias=false
+URxvt*boldFont:                                 xft:Ohsnap.Icons:style=bold:hinting=true:pixelsize=10:antialias=false
+URxvt*italicFont:                               xft:Ohsnap.Icons:style=italic:hinting=true:pixelsize=10:antialias=false
+URxvt*boldItalicFont:                           xft:Ohsnap.Icons:style=bolditalic:hinting=true:pixelsize=10:antialias=false
+! extensions
+!Use bidi for hebrew support
+URxvt.perl-ext-common: bidi
+URxvt.colorIT:                                  #9D9EA2
+URxvt.colorBD:                                  #9D9EA2
+URxvt.colorUL:                                  #9D9EA2
+Urxvt.bidi.FieldSep: \x{2502}

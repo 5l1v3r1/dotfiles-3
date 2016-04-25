@@ -1,0 +1,4 @@
+-> Sudo
+-> Settings
+-> Internet search: 
+-> System package management

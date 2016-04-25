@@ -1,0 +1,4 @@
+#!/usr/bin/ruby 
+hi = rand(65535)
+puts hi 
+puts 'Great Port !'
