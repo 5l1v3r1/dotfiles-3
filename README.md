@@ -1,15 +1,15 @@
 # dotfiles
 Distrubtion - Arch GNU\Linux.<br>
 Video & Audio - mpd & ncmpcpp/mpv.<br>
-Files Browser - Ranger & PCManFM.<br>
+Files Browsers - Ranger & PCManFM.<br>
 Web Browsers - elinks,w3m,firefox.<br>
 panel - lxpanel.<br>
 DE/WM - dwm / lxde.<br>
 Font - Ohsnap.icons (Get it from the AUR)<br>
 Terminal - urxvt.<br>
 Firefox Addons:<br>
-  vimpperator<br>
-  HTTPS-EveryWhere<br>
+  vimperator<br>
+  HTTPS-Everywhere<br>
   Request Policy<br>
   Noscript<br>
   Stylish<br>
