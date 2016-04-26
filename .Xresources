@@ -12,7 +12,7 @@ Xcursor.theme: Neutral
 !#include "/home/nadav/.config/termcolours/jellybeans"
 #include "/home/nadav/.config/termcolours/hybrid"
 !#include "/home/nadav/.config/termcolours/classy_touch"
-!#include "/home/nadav/.config/termcolours/yan"
+!#include "/home/nadav/.config/termcolours/Tux1c"
 !#include "/home/nadav/.config/termcolours/optical"
 ! URxvt Options
 URxvt.scrollBar: off
